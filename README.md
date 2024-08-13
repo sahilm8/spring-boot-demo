@@ -1,4 +1,4 @@
-# spring-rest-service
+# spring_rest_svc
 
 A simple Spring RESTful service.
 

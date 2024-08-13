@@ -1,4 +1,4 @@
-package com.example.spring-rest-service;
+package com.example.spring_rest_svc;
 
 import java.util.concurrent.atomic.AtomicLong;
 
