@@ -1,4 +1,4 @@
-# spring-boot-demo
+# spring-rest-service
 
 A simple Spring RESTful service.
 
