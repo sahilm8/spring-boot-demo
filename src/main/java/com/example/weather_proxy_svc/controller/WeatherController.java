@@ -13,6 +13,7 @@ import com.example.weather_proxy_svc.service.WeatherService;
 public class WeatherController {
 	private static final Logger logger = LoggerFactory.getLogger(WeatherController.class);
 	private final WeatherService weatherService;
+	private static final String proxyEndpoint = "/v1/weather_proxy";
 
 	public WeatherController(WeatherService weatherService) {
 		this.weatherService = weatherService;
@@ -24,19 +25,34 @@ public class WeatherController {
 		return String.format(
 			"Welcome to the Weather Proxy Service!%n%n" +
 			"The API endpoint /v1/weather_proxy accepts GET requests with the following parameters:%n" +
-			"- latitude (required)%n" +
-			"- longitude (required)"
+			"- String latitude (required)%n" +
+			"- String longitude (required)%n" +
+			"- boolean temperature (optional)%n" +
+			"- boolean relativeHumidity (optional)%n" +
+			"- boolean precipitation (optional)%n" +
+			"- boolean windSpeed (optional)%n"
 		);
 	}
 
-	@GetMapping(value = "/v1/weather_proxy", produces = MediaType.TEXT_PLAIN_VALUE)
+	@GetMapping(value = proxyEndpoint, produces = MediaType.TEXT_PLAIN_VALUE)
 	public String weatherProxy(
-			@RequestParam(value = "latitude", defaultValue = "") String latitude,
-			@RequestParam(value = "longitude", defaultValue = "") String longitude
-		) {
+		@RequestParam(value = "latitude", defaultValue = "51.5085") String latitude,
+		@RequestParam(value = "longitude", defaultValue = "-0.1257") String longitude,
+		@RequestParam(required = false) boolean temperature,
+		@RequestParam(required = false) boolean relativeHumidity,
+		@RequestParam(required = false) boolean precipitation,
+		@RequestParam(required = false) boolean windSpeed
+	) { 
 		logger.info("Request to /v1/weather_proxy with params latitude: " + latitude + ", longitude: " + longitude);
 		try {
-			return weatherService.getWeatherData(latitude, longitude);
+			return weatherService.getWeatherData(
+				latitude,
+				longitude,
+				temperature,
+				relativeHumidity,
+				precipitation,
+				windSpeed
+			);
 		} catch (Exception e) {
 			return e.getMessage();
 		}
@@ -45,6 +61,6 @@ public class WeatherController {
 	@GetMapping(value = "/*", produces = MediaType.TEXT_PLAIN_VALUE)
 	public String invalid() {
 		logger.info("Invalid request");
-		return "Invalid request. Please refer to the documentation at https://github.com/sahilm8/weather_proxy_svc";
+		return "Invalid request, please refer to the README at https://github.com/sahilm8/weather_proxy_svc";
 	}
 }

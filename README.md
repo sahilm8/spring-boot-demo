@@ -8,10 +8,14 @@ A proxy serivce returning weather data from [Open-Meteo](https://open-meteo.com)
 
 ## Usage
 
-By default, the service starts on port 8080. The API endpoint `/v1/weather_proxy` accepts GET requests with the following parameters:
+By default, the service starts on port 3000. The API endpoint `/v1/weather_proxy` accepts GET requests with the following parameters:
 
-- latitude (required)
-- longitude (required)
+- String latitude (required)
+- String longitude (required)
+- boolean temperature (optional)
+- boolean relativeHumidity (optional)
+- boolean percipitation (optional)
+- boolean windSpeed (optional)
 
 ## Stack
 
