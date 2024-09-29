@@ -17,6 +17,10 @@ By default, the service starts on port 3000. The API endpoint `/v1/weather_proxy
 - boolean percipitation (optional)
 - boolean windSpeed (optional)
 
+```
+curl "http://localhost:3000/v1/weather_proxy?latitude=51.5085&longitude=-0.1257&temperature=true&relativeHumidity=true&precipitation=true&windSpeed=true"
+```
+
 ## Stack
 
 - Java 21
