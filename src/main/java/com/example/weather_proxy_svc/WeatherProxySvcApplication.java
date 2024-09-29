@@ -1,13 +1,11 @@
-package com.example.spring_rest_svc;
+package com.example.weather_proxy_svc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootDemoApplication {
-
+public class WeatherProxySvcApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootDemoApplication.class, args);
+		SpringApplication.run(WeatherProxySvcApplication.class, args);
 	}
-
 }
