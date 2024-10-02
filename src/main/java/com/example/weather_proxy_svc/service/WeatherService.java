@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.weather_proxy_svc.model.Forecast;
 import com.example.weather_proxy_svc.model.Response;
+import com.example.weather_proxy_svc.model.Weather;
 import com.example.weather_proxy_svc.util.AppConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,7 +32,18 @@ public class WeatherService {
         boolean temperature,
         boolean relativeHumidity,
         boolean precipitation,
-        boolean windSpeed
+        boolean windSpeed,
+        boolean feelsLike,
+        boolean isDay,
+        boolean rain,
+        boolean showers,
+        boolean snow,
+        boolean weatherCode,
+        boolean cloudCover,
+        boolean pressure,
+        boolean surfacePressure,
+        boolean windDirection,
+        boolean windGusts
     ) {
         String url = appConfig.getBaseUrl().concat("?latitude=%s&longitude=%s");
         StringBuilder reqUrl = new StringBuilder(String.format(url, latitude, longitude));
@@ -43,6 +55,17 @@ public class WeatherService {
         if (relativeHumidity) optionalParams.add("relative_humidity_2m");
         if (precipitation) optionalParams.add("precipitation");
         if (windSpeed) optionalParams.add("wind_speed_10m");
+        if (feelsLike) optionalParams.add("apparent_temperature");
+        if (isDay) optionalParams.add("is_day");
+        if (rain) optionalParams.add("rain");
+        if (showers) optionalParams.add("showers");
+        if (snow) optionalParams.add("snowfall");
+        if (weatherCode) optionalParams.add("weather_code");
+        if (cloudCover) optionalParams.add("cloud_cover");
+        if (pressure) optionalParams.add("pressure_msl");
+        if (surfacePressure) optionalParams.add("surface_pressure");
+        if (windDirection) optionalParams.add("wind_direction_10m");
+        if (windGusts) optionalParams.add("wind_gusts_10m");
 
         if (!optionalParams.isEmpty()) {
             reqUrl.append("&current=").append(String.join(",", optionalParams));
@@ -68,22 +91,24 @@ public class WeatherService {
         }
 
         if (response.getCurrent() != null) {
-            if (response.getCurrent().getTime() != null) {
-                forecast.setTime(response.getCurrent().getTime());
-            }
-            if (response.getCurrent().getTemperature_2m() != null) {
-                forecast.setTemperature(response.getCurrent().getTemperature_2m());
-            }
-            if (response.getCurrent().getRelative_humidity_2m() != null) {
-                forecast.setRelativeHumidity(response.getCurrent().getRelative_humidity_2m());
-            }
-            if (response.getCurrent().getPrecipitation() != null) {
-                forecast.setPrecipitation(response.getCurrent().getPrecipitation());
-            }
-            if (response.getCurrent().getWind_speed_10m() != null) {
-                forecast.setWindSpeed(response.getCurrent().getWind_speed_10m());
-            }
-        }
+        Weather current = response.getCurrent();
+        if (current.getTime() != null) forecast.setTime(current.getTime());
+        if (current.getTemperature_2m() != null) forecast.setTemperature(current.getTemperature_2m());
+        if (current.getRelative_humidity_2m() != null) forecast.setRelativeHumidity(current.getRelative_humidity_2m());
+        if (current.getPrecipitation() != null) forecast.setPrecipitation(current.getPrecipitation());
+        if (current.getWind_speed_10m() != null) forecast.setWindSpeed(current.getWind_speed_10m());
+        if (current.getApparent_temperature() != null) forecast.setFeelsLike(current.getApparent_temperature());
+        if (current.getIs_day() != null) forecast.setIsDay(current.getIs_day());
+        if (current.getRain() != null) forecast.setRain(current.getRain());
+        if (current.getShowers() != null) forecast.setShowers(current.getShowers());
+        if (current.getSnowfall() != null) forecast.setSnow(current.getSnowfall());
+        if (current.getWeather_code() != null) forecast.setWeatherCode(current.getWeather_code());
+        if (current.getCloud_cover() != null) forecast.setCloudCover(current.getCloud_cover());
+        if (current.getPressure_msl() != null) forecast.setPressure(current.getPressure_msl());
+        if (current.getSurface_pressure() != null) forecast.setSurfacePressure(current.getSurface_pressure());
+        if (current.getWind_direction_10m() != null) forecast.setWindDirection(current.getWind_direction_10m());
+        if (current.getWind_gusts_10m() != null) forecast.setWindGusts(current.getWind_gusts_10m());
+    }
 
         try {
             ObjectMapper mapper = new ObjectMapper();

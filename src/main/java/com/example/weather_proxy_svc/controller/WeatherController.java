@@ -34,6 +34,7 @@ public class WeatherController {
 		);
 	}
 
+	// http://localhost:3000/v1/weather_proxy?latitude=51.5085&longitude=-0.1257&temperature=true&relativeHumidity=true&precipitation=true&windSpeed=true&feelsLike=true&isDay=true&rain=true&showers=true&snow=true&weatherCode=true&cloudCover=true&pressure=true&surfacePressure=true&windDirection=true&windGusts=true
 	@GetMapping(value = proxyEndpoint, produces = MediaType.TEXT_PLAIN_VALUE)
 	public String weatherProxy(
 		@RequestParam(value = "latitude", defaultValue = "51.5085") String latitude,
@@ -41,7 +42,18 @@ public class WeatherController {
 		@RequestParam(required = false) boolean temperature,
 		@RequestParam(required = false) boolean relativeHumidity,
 		@RequestParam(required = false) boolean precipitation,
-		@RequestParam(required = false) boolean windSpeed
+		@RequestParam(required = false) boolean windSpeed,
+		@RequestParam(required = false) boolean feelsLike,
+		@RequestParam(required = false) boolean isDay,
+		@RequestParam(required = false) boolean rain,
+		@RequestParam(required = false) boolean showers,
+		@RequestParam(required = false) boolean snow,
+		@RequestParam(required = false) boolean weatherCode,
+		@RequestParam(required = false) boolean cloudCover,
+		@RequestParam(required = false) boolean pressure,
+		@RequestParam(required = false) boolean surfacePressure,
+		@RequestParam(required = false) boolean windDirection,
+		@RequestParam(required = false) boolean windGusts
 	) { 
 		logger.info("Request to /v1/weather_proxy with latitude: " + latitude + " & longitude: " + longitude);
 		return weatherService.getWeatherData(
@@ -50,7 +62,18 @@ public class WeatherController {
 			temperature,
 			relativeHumidity,
 			precipitation,
-			windSpeed
+			windSpeed,
+			feelsLike,
+			isDay,
+			rain,
+			showers,
+			snow,
+			weatherCode,
+			cloudCover,
+			pressure,
+			surfacePressure,
+			windDirection,
+			windGusts
 		);
 	}
 
