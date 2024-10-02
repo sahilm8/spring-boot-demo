@@ -1,6 +1,5 @@
 package com.example.weather_proxy_svc.service;
 
-
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
