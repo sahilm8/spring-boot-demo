@@ -30,11 +30,21 @@ public class WeatherController {
 			"- boolean temperature (optional)%n" +
 			"- boolean relativeHumidity (optional)%n" +
 			"- boolean precipitation (optional)%n" +
-			"- boolean windSpeed (optional)%n"
+			"- boolean windSpeed (optional)%n" +
+			"- boolean feelsLike (optional)%n" +
+			"- boolean isDay (optional)%n" +
+			"- boolean rain (optional)%n" +
+			"- boolean showers (optional)%n" +
+			"- boolean snow (optional)%n" +
+			"- boolean weatherCode (optional)%n" +
+			"- boolean cloudCover (optional)%n" +
+			"- boolean pressure (optional)%n" +
+			"- boolean surfacePressure (optional)%n" +
+			"- boolean windDirection (optional)%n" +
+			"- boolean windGusts (optional)%n"
 		);
 	}
 
-	// http://localhost:3000/v1/weather_proxy?latitude=51.5085&longitude=-0.1257&temperature=true&relativeHumidity=true&precipitation=true&windSpeed=true&feelsLike=true&isDay=true&rain=true&showers=true&snow=true&weatherCode=true&cloudCover=true&pressure=true&surfacePressure=true&windDirection=true&windGusts=true
 	@GetMapping(value = proxyEndpoint, produces = MediaType.TEXT_PLAIN_VALUE)
 	public String weatherProxy(
 		@RequestParam(value = "latitude", defaultValue = "51.5085") String latitude,

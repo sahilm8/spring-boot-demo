@@ -16,9 +16,20 @@ By default, the service starts on port 3000. The API endpoint `/v1/weather_proxy
 - boolean relativeHumidity (optional)
 - boolean percipitation (optional)
 - boolean windSpeed (optional)
+- boolean feelsLike (optional)
+- boolean isDay (optional)
+- boolean rain (optional)
+- boolean showers (optional)
+- boolean snow (optional)
+- boolean weatherCode (optional)
+- boolean cloudCover (optional)
+- boolean pressure (optional)
+- boolean surfacePressure (optional)
+- boolean windDirection (optional)
+- boolean windGusts (optional)
 
 ```
-curl "http://localhost:3000/v1/weather_proxy?latitude=51.5085&longitude=-0.1257&temperature=true&relativeHumidity=true&precipitation=true&windSpeed=true"
+curl "http://localhost:3000/v1/weather_proxy?latitude=51.5085&longitude=-0.1257&temperature=true&relativeHumidity=true&precipitation=true&windSpeed=true&feelsLike=true&isDay=true&rain=true&showers=true&snow=true&weatherCode=true&cloudCover=true&pressure=true&surfacePressure=true&windDirection=true&windGusts=true"
 ```
 
 ## Stack
