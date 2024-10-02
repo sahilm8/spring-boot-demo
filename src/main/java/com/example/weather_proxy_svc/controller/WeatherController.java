@@ -43,19 +43,15 @@ public class WeatherController {
 		@RequestParam(required = false) boolean precipitation,
 		@RequestParam(required = false) boolean windSpeed
 	) { 
-		logger.info("Request to /v1/weather_proxy with params latitude: " + latitude + ", longitude: " + longitude);
-		try {
-			return weatherService.getWeatherData(
-				latitude,
-				longitude,
-				temperature,
-				relativeHumidity,
-				precipitation,
-				windSpeed
-			);
-		} catch (Exception e) {
-			return e.getMessage();
-		}
+		logger.info("Request to /v1/weather_proxy with latitude: " + latitude + " & longitude: " + longitude);
+		return weatherService.getWeatherData(
+			latitude,
+			longitude,
+			temperature,
+			relativeHumidity,
+			precipitation,
+			windSpeed
+		);
 	}
 
 	@GetMapping(value = "/*", produces = MediaType.TEXT_PLAIN_VALUE)
