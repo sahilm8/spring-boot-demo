@@ -25,4 +25,3 @@ curl "http://localhost:3000/v1/weather_proxy?latitude=51.5085&longitude=-0.1257&
 
 - Java 21
 - Spring Boot
-- Spring Data JPA
